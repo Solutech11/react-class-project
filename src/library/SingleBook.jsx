@@ -21,8 +21,9 @@ export default function SingleBook() {
     const [BookData, setBookData] = useState( {})
     const [modal, setmodal] = useState(true)
     const [Books, setBooks] = useState([])
+
     const handleNavigate = (id) => {
-        navigate(`/movie/${id}`)
+        navigate(`/library/book/${id}`)
         window.location.reload()
     }
 
@@ -53,7 +54,7 @@ export default function SingleBook() {
         // setLoading(true)
         try {
         let Intigration= await axios({
-            url:`https://openlibrary.org/search.json?author=${author}&sort=new&fields=key,title,first_publish_year,cover_i`,
+            url:`https://openlibrary.org/search.json?author=${author}&sort=new&fields=key,title,first_publish_year,cover_i&limit=20`,
             method:'get',
             headers:{
             Accept:'application/json'
@@ -78,7 +79,7 @@ export default function SingleBook() {
     <div className='singleMovieBody'>
 
         {
-        modal&&(<div className="modal-overlay" onClick={()=>setmodal(false)}>
+        modal&&(<div className="modal-overlay" >
         <div className="modal-content" style={{width:'auto'}} onClick={(e) => e.stopPropagation()}>
         <div style={{flex:1, display:'flex', justifyContent:"center", alignItems:'center', height:'100%'}}>
           <div className="loader"></div>
@@ -127,42 +128,14 @@ export default function SingleBook() {
 
                             <img src={`https://covers.openlibrary.org/a/olid/${BookData.author_key[index]}-M.jpg`} className='authorImg' style={{height:120,borderRadius:'100px'}} />
 
-                            <div className='movieNameContainer'>
-                                <h4>{i}</h4>
+                            <div className='movieNameContainer' >
+                                <h4 style={{height:'auto', lineHeight:'normal', textAlign:'center' }}>{i}</h4>
                             </div>
                             {/* <p className='movieFloater'>90</p> */}
 
                         </li>
                     ))}
                         
-                    {BookData?.Director?.split(',')?.map((i,index)=>(
-                        <li key={index} >
-
-                            <img src={BookData.Poster} className='authorImg' style={{height:120,borderRadius:'100px'}} />
-
-                            <div className='movieNameContainer'>
-                                <h4>{i}</h4>
-                                <span>Director</span>
-                            </div>
-                            {/* <p className='movieFloater'>90</p> */}
-
-                        </li>
-                    ))}
-
-                    {BookData?.Writer?.split(',')?.map((i,index)=>(
-                        <li key={index} >
-
-                            <img src={BookData.Poster} className='authorImg' style={{height:120,borderRadius:'100px'}} />
-
-                            <div className='movieNameContainer'>
-                                <h4>{i}</h4>
-                                <span>Writer</span>
-                            </div>
-                            {/* <p className='movieFloater'>90</p> */}
-
-                        </li>
-                    ))}
-
                 </ul>
             </div>
 
@@ -175,7 +148,7 @@ export default function SingleBook() {
                 <ul >
                     
                     {Books.map(i=>(
-                        <li onClick={()=> handleNavigate(i.imdbID)}  key={i.imdbID}>
+                        <li  onClick={()=> handleNavigate(i.title)}  key={i.imdbID}>
 
                             <img src={`https://covers.openlibrary.org/b/id/${i.cover_i}-L.jpg`} />
 
