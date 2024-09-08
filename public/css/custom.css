@@ -260,6 +260,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 .SearchSectionLibrary>input{
     width: 50%;
@@ -268,6 +271,40 @@
     padding-left: 10px;
     padding-right: 10px;
     font-weight: 500;
+    border: transparent;
+}
+
+.searchOptionDiv{
+    display: flex;
+    gap:10px;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.searchOptionDiv>button{
+    display: flex;
+    gap:10px;
+    width: 50%;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    border: transparent;
+    padding: 0px;
+    color: rgb(233, 233, 233);
+    height: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    border-right: solid 1px white;
+    transition-duration: 0.5s;
+}
+
+.searchOptionDiv>button:hover{
+    color: rgb(255, 255, 255);
+    font-size: 21px;
+}
+
+.searchOptionDiv>button:last-child{
+    border: transparent;
 }
 
 .hr{
@@ -281,6 +318,7 @@
     width: 100%;
     gap: 2.5%;
     flex-wrap: wrap;
+    padding-left: 0px;
 }
 
 .LibraryListStyle>li{
@@ -300,9 +338,34 @@
     width: 24%;
 }
 
+@media only screen and (max-width: 800px) {
+    /* Your CSS rules here */
+    .LibraryListStyle>li{
+        width: 100%;
+        
+    }
+    .LibraryListStyle{
+        gap: 0%;
+    }
+    .SearchSectionLibrary>input{
+        width: 100%;
+    }
+    .searchOptionDiv{
+        width: 100%;
+    }
+    .bookContainer{
+        padding: 10px;
+    }
+    .LibraryListStyle>li:hover{
+        height: 410px;
+        width: 100%;
+    }
+}
+  
 .LibraryListStyle>li>img{
     border-radius: 10px;
     width: 100%;
+    object-fit: cover;
     height: 75%;
 }
 
