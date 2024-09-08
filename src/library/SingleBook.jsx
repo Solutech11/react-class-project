@@ -41,7 +41,7 @@ export default function SingleBook() {
 
            
             setBookData(Intigration.data.docs[0])
-            await GetApi(Intigration.data.docs[0].subject_key[0])
+            await GetApi(Intigration.data.docs[0].author_name[0])
         } catch (error) {
             console.log(error.response.data);
             alert("Error Occured")
@@ -49,11 +49,11 @@ export default function SingleBook() {
     }
 
     // get books api 
-    async function GetApi(subject) {
+    async function GetApi(author) {
         // setLoading(true)
         try {
         let Intigration= await axios({
-            url:`https://openlibrary.org/search.json?q=${subject}&fields=key,title,first_publish_year,cover_i&limit=10`,
+            url:`https://openlibrary.org/search.json?author=${author}&sort=new&fields=key,title,first_publish_year,cover_i`,
             method:'get',
             headers:{
             Accept:'application/json'
@@ -168,7 +168,7 @@ export default function SingleBook() {
 
             {/* toprated */}
             <div>
-                <h3>Related Books</h3>
+                <h3>Authors Books</h3>
                 <br/>
 
                 {/* list */}
@@ -180,8 +180,8 @@ export default function SingleBook() {
                             <img src={`https://covers.openlibrary.org/b/id/${i.cover_i}-L.jpg`} />
 
                             <div className='movieNameContainer'>
-                                <h4>{i.title.length>10?`${i.title.slice(0,10)}...`:i.title}</h4>
-                                <span>Year: {i.first_publish_year}</span>
+                                <h4>{i?.title?.length>10?`${i.title.slice(0,10)}...`:i.title}</h4>
+                                <span>Year: {i?.first_publish_year}</span>
                             </div>
                             {/* <p className='movieFloater'>90</p> */}
 
