@@ -1,8 +1,17 @@
 import axios from 'axios'
 import React,{useEffect, useState} from 'react'
 import '../styles/modal.css'
+import {
+  Link,
+  NavLink,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 export default function BookList() {
+  const navigate = useNavigate();
+
 
   const [modal, setModal] = useState(true)
   
@@ -44,7 +53,9 @@ export default function BookList() {
 
   //run api
   useEffect(() => {
-    setModal(false)
+
+    if (genre.length>1)setModal(false)
+    
     GetApi(genre)
   }, [genre]);
 
@@ -119,7 +130,7 @@ export default function BookList() {
           <button onClick={()=>setModal(true)}>
             Search genre
           </button>
-          <button onClick={switchSearcBy}>
+          <button value={genre} onClick={switchSearcBy}>
             Search {searchBy=='Title'?"Author":"Title"}
           </button>
         </div>
@@ -142,7 +153,7 @@ export default function BookList() {
             <ul className='LibraryListStyle'>
             {FilteredBooks.map(i=>(
               
-                <li>
+                <li onClick={()=>navigate(`/library/book/${i.title}`)}>
                   <img src={`https://covers.openlibrary.org/b/id/${i.cover_i}-L.jpg`} />
                   <div>
                     <h3>{i.title.length>18?`${i.title.slice(0,18)}...`:i.title}</h3>

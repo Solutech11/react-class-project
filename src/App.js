@@ -9,6 +9,7 @@ import Contact from './directory/Contact';
 import MovieList from './movie/movieList';
 import SingleMovie from './movie/SingleMovie';
 import BookList from './library/BookList';
+import SingleBook from './library/SingleBook';
 
 
 
@@ -28,6 +29,7 @@ function App() {
 
           {/* library  */}
           <Route path='/library' element={<BookList/>} />
+          <Route path='/library/book/:id' element={<SingleBook/>} />
 
         </Routes>
       </Router>

@@ -98,6 +98,7 @@
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
+    max-width: 100%;
     list-style:none;
     padding: 0px;
 }
@@ -123,6 +124,7 @@
     height: 180px;
     width: 100%;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .movieNameContainer{
@@ -236,6 +238,8 @@
     height: 200px;
     width: 150px;
     border-radius: 15px;
+    background-color: #333333;
+    object-fit: cover;
 }
 
 
