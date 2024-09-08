@@ -102,7 +102,7 @@ export default function SingleBook() {
 
                     <div className='bottom-topLeft-single'>
                         <h3>First Sentence</h3>
-                        <p>{BookData?.first_sentence?`. Place(${BookData?.first_sentence[0]})`:''}</p>
+                        <p>{BookData?.first_sentence?`${BookData?.first_sentence[0]}`:''}</p>
                     </div>
             </div>
 
